@@ -55,10 +55,21 @@ with the original plugin's `/ts` prefix.
 
 ## Settings
 
+Enable **Automatically receive Taildrop files** in the plugin settings to save incoming files
+to your XDG Downloads folder (fallback: `~/Downloads`), or set a custom receive folder.
+The plugin checks on its refresh interval while Tailscale is connected and Noctalia is running.
+Saved files trigger a desktop notification; name conflicts are renamed, never overwritten.
+Existing inbox files are also collected when enabled. Repeated identical errors are suppressed
+until a successful check. Disabling reception does not cancel a batch already in progress.
+No separate service or `notify-send` is required. Do not run another auto-receiver alongside it.
+
 | Setting | Type | Default | Description |
 | --- | --- | --- | --- |
 | `refresh_interval` | int | `10` | Poll interval in seconds, from 3 to 120. |
 | `notify_on_peer_change` | bool | `true` | Notify when a known peer goes online or offline. |
+| `taildrop_auto_receive` | bool | `false` | Automatically collect Taildrop files while the plugin runs. |
+| `taildrop_directory` | string | empty | Receive folder; empty uses XDG Downloads. Absolute paths and `~/` are supported. |
+| `taildrop_notify` | bool | `true` | Notify after files are saved. |
 | `tailscale_bin` | string | `tailscale` | Tailscale executable name or path. |
 | `admin_url` | string | empty | Browser URL override; defaults to `https://login.tailscale.com/admin/machines`. |
 | `ssh_user` | string | empty | Optional username for `tailscale ssh`. |
@@ -89,7 +100,8 @@ noctalia msg plugin alivault/tailscale-simple:service all toggle
   Network access is through the Tailscale daemon/CLI and the browser; SSH and Ping contact the selected peer.
 - Copy actions write to the system clipboard. Device data is held in plugin runtime state and may be
   displayed in notifications. Tailscale, the terminal, browser, and Noctalia manage their own state/logs.
-- The plugin itself makes no filesystem writes. Its code does not need your account name, IPs, or device IDs.
+- Optional Taildrop reception creates the receive directory and runs `tailscale file get --verbose --conflict=rename`,
+  moving files out of the daemon inbox onto disk. Files are not opened or executed. Its code does not need your account name, IPs, or device IDs.
 - Screenshots below use fictitious demo devices, not a real tailnet.
 
 ![Devices in dark mode](screenshots/devices-dark.webp)
