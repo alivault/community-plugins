@@ -37,13 +37,15 @@ The `service` entry starts automatically when enabled and polls status without c
 noctalia msg panel-toggle alivault/tailscale-simple:manager
 ```
 
-- Use the switch beside your device name to connect or disconnect. Copy IP and Copy DNS sit below it.
+- Use the switch beside your device name to connect or disconnect. The inline **IP** and **DNS** buttons
+  retain copy icons and tooltips, and copy your device's address or DNS name.
 - **Devices:** search by name, DNS name, or IP. Green dots mean online; gray dots mean offline.
   The vertical ellipsis expands the IP address and Ping, SSH, and Copy DNS actions.
 - **Exit node:** choose an available node or select **None · direct connection** to stop using an exit node.
 - **Settings:** toggle incoming-connection blocking, Tailscale SSH, subnet routes, advertising this device
   as an exit node, and local-network access while using an exit node.
 - The header icons open the admin console, refresh status, and close the panel. Action results use notifications.
+- The panel is 580 logical pixels tall, fitting the settings without unnecessary empty space at the default scale.
 
 Type `/tss` in the Noctalia launcher for categories. Examples: `/tss peers laptop`, `/tss exit`,
 `/tss panel`, `/tss status`, `/tss refresh`, and `/tss admin`.

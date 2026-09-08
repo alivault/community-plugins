@@ -187,6 +187,8 @@ render = function()
           text((snapshot.hostname or "") ~= "" and snapshot.hostname or tr("this_device"), 14),
           text((snapshot.ipv4 or "") ~= "" and snapshot.ipv4 or tr("no_ip"), 12, true),
         }),
+        button(tr("ip"), function() copy(snapshot.ipv4) end, ready() and (snapshot.ipv4 or "") ~= "", "ghost", "copy", tr("copy_ip")),
+        button(tr("dns"), function() copy(snapshot.dnsName) end, ready() and (snapshot.dnsName or "") ~= "", "ghost", "copy", tr("copy_dns")),
         ui.toggle({ key = "connection", checked = running, enabled = ready(),
           onChange = function(value)
             local connect = value == true or value == "true"
@@ -195,10 +197,6 @@ render = function()
               render()
             end
           end }),
-      }),
-      ui.row({ gap = 8 }, {
-        button(tr("copy_ip"), function() copy(snapshot.ipv4) end, ready() and (snapshot.ipv4 or "") ~= "", "ghost", "copy"),
-        button(tr("copy_dns"), function() copy(snapshot.dnsName) end, ready() and (snapshot.dnsName or "") ~= "", "ghost", "copy"),
       }),
     }),
     ui.row({ gap = 4 }, {

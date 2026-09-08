@@ -2,7 +2,7 @@
 
 id = "alivault/tailscale-simple"
 name = "Tailscale Simple"
-version = "1.0.0"
+version = "1.0.1"
 plugin_api = 30
 author = "alivault"
 license = "MIT"
@@ -69,7 +69,7 @@ entry = "widget.luau"
 id = "manager"
 entry = "panel.luau"
 width = 460
-height = 620
+height = 580
 placement = "attached"
 position = "auto"
 open_near_click = true

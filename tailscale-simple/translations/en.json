@@ -1,5 +1,7 @@
 {
   "simple": {
+    "ip": "IP",
+    "dns": "DNS",
     "copy_ip": "Copy IP",
     "copy_dns": "Copy DNS",
     "ping": "Ping",
